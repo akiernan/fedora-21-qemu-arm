@@ -9,11 +9,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 1536
-    vb.customize ["modifyvm", :id, "--audio", "dsound", "--audiocontroller", "hda"]
   end
 
-
   config.vm.provision "shell", path: "privileged.sh"
-  config.vm.provision "shell", privileged: false, path: "unprivileged.sh"
 
 end
