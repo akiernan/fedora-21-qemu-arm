@@ -27,4 +27,5 @@ EOF
 
 virt-install --name f21-arm-a9-uboot --ram 512 --arch armv7l --machine vexpress-a9 --os-variant fedora21 --boot kernel=/usr/share/u-boot.git/arm/vexpress-a9/u-boot --disk /var/lib/libvirt/images/Fedora-Minimal-armhfp-21-5-sda.raw --import --print-xml >/tmp/f21-arm-a9-uboot.xml
 virsh define /tmp/f21-arm-a9-uboot.xml
+virsh autostart f21-arm-a9-uboot
 virsh start f21-arm-a9-uboot
