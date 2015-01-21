@@ -13,4 +13,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", path: "privileged.sh"
 
+  config.ssh.forward_agent = true
+
 end
