@@ -18,10 +18,16 @@ guestfish -x <<EOF
 add Fedora-Minimal-armhfp-21-5-sda.raw
 run
 mount /dev/sda3 /
+mount /dev/sda1 /boot
 download /etc/shadow /tmp/shadow
-! sed 's/^root:[^:]\+:/root::/' /tmp/shadow > /tmp/shadow.new
-upload /tmp/shadow.new /etc/shadow
+! sed -i -e 's/^root:[^:]\+:/root::/' /tmp/shadow
+upload /tmp/shadow /etc/shadow
 rm /etc/systemd/system/multi-user.target.wants/initial-setup-text.service
+download /boot/extlinux/extlinux.conf /tmp/extlinux.conf
+! sed -i -e '/^ui /d; /^menu /d; /^totaltimeout /d' /tmp/extlinux.conf
+! t=`grubby -c /tmp/extlinux.conf --extlinux --default-title`; printf "default $t\nontimeout $t\n" >> /tmp/extlinux.conf
+upload /tmp/extlinux.conf /boot/extlinux/extlinux.conf
+umount /boot
 umount /
 EOF
 
