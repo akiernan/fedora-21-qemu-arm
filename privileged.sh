@@ -27,6 +27,7 @@ download /boot/extlinux/extlinux.conf /tmp/extlinux.conf
 ! sed -i -e '/^ui /d; /^menu /d; /^totaltimeout /d' /tmp/extlinux.conf
 ! echo "ONTIMEOUT `grubby -c /tmp/extlinux.conf --extlinux --default-title`" >> /tmp/extlinux.conf
 upload /tmp/extlinux.conf /boot/extlinux/extlinux.conf
+ln-sf ../usr/share/zoneinfo/UTC /etc/localtime
 umount /boot
 umount /
 EOF
