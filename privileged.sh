@@ -12,7 +12,7 @@ yum -y install virt-install libvirt-daemon-config-network
 systemctl start libvirtd.service
 
 cd /var/lib/libvirt/images
-curl --progress-bar -L -O http://download.fedoraproject.org/pub/fedora/linux/releases/21/Images/armhfp/Fedora-Minimal-armhfp-21-5-sda.raw.xz
+curl --silent --fail -L -O http://download.fedoraproject.org/pub/fedora/linux/releases/21/Images/armhfp/Fedora-Minimal-armhfp-21-5-sda.raw.xz
 unxz Fedora-Minimal-armhfp-21-5-sda.raw.xz
 guestfish -x <<'EOF'
 add Fedora-Minimal-armhfp-21-5-sda.raw
